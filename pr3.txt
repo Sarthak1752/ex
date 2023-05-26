@@ -1,0 +1,28 @@
+import pandas as pd
+
+df = pd.read_csv('Social_Network_Adds.csv')
+
+summary_stats = df.groupby('Age')['EstimatedSalary'].describe()    #we can put any categorical var inplace of age
+
+print(summary_stats)
+
+
+
+
+df_iris=pd.DataFrame(pd.read_csv('iris.csv'))
+
+selected_species=['Iris-setosa', 'Iris-versicolor', 'Iris-virginica']
+filtered_df=df_iris[df_iris['Species'].isin(selected_species)];
+species_stat=filtered_df.groupby('Species').describe()
+print(species_stat)
+
+
+
+
+
+
+
+print(df.loc[:,'Age'].mean())
+print(df.loc[:,'ApplicantIncome'].mean()) 
+
+df.groupby('Age')['ApplicantIncome']

@@ -1,0 +1,27 @@
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix,classification_report
+
+import pandas as pd
+
+df=pd.read_csv('SocialNetworkAds.csv')
+
+data=pd.DataFrame(df)
+print(data)
+
+X=df[['EstimatedSalary']]
+y=df['Purchased']
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=30)
+
+model=LogisticRegression()
+model.fit(X_train,y_train)
+
+y_pred=model.predict(X_test)
+
+print(y_pred)
+
+cm=confusion_matrix(y_test,y_pred)
+
+report =classification_report(y_test,y_pred,zero_division=1)
+print(cm)

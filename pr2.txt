@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+df = pd.read_csv('AcademicPerformance.csv')
+
+
+missing_values = df.isnull().sum()
+print("Missing values:\n", missing_values)
+
+df_cleaned = df.dropna()
+
+df_cleaned = df.fillna(df.mean()) 
+ 
+
+numeric_variables = df_cleaned.select_dtypes(include='number').columns
+for var in numeric_variables:
+    sns.boxplot(x=df_cleaned[var])
+    plt.title(var)
+    plt.show()
+ 
+df_outliers_removed = df_cleaned[(df_cleaned['Variable'] < upper_threshold) & (df_cleaned['Variable'] > lower_threshold)]
+
+df_transformed = df_outliers_removed.copy()
+df_transformed['Transformed_Variable'] = np.sqrt(df_outliers_removed['Variable'])
+
+plt.figure(figsize=(8, 6))
+sns.histplot(data=df_transformed, x='Transformed_Variable', kde=True)
+plt.title("Transformed Variable")
+plt.show()
+

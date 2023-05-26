@@ -1,0 +1,25 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load the Titanic dataset
+titanic = sns.load_dataset('titanic')
+
+# Explore the dataset
+print(titanic.head())  # Print the first few rows of the dataset
+print(titanic.info())  # Print information about the dataset
+selected_columns = titanic.iloc[:, [3, 4, 5]]
+print(selected_columns)
+# Plot histogram of ticket prices
+sns.histplot(data=titanic, x='age')
+# plt.show()
+
+sns.scatterplot(data=titanic, x='age', y='fare', hue='survived')
+# plt.show()
+
+sns.boxplot(data=titanic, x='pclass', y='fare')
+# plt.show()
+plt.pyplot(data=titanic, x='fare', kde=True)
+# sns.pairplot(titanic)
+
+
+ 

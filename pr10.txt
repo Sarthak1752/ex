@@ -1,0 +1,27 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Downloaded dataset path
+dataset_path = 'iris.csv'
+
+# Load the dataset into a DataFrame
+df = pd.read_csv(dataset_path)
+
+# 1. List down the features and their types
+print(df.info())
+
+# 2. Create histograms for feature distributions
+for column in df.columns:
+    if df[column].dtype != object:
+        plt.hist(df[column], bins='auto')
+        plt.xlabel(column)
+        plt.ylabel("Frequency")
+        plt.show()
+
+# 3. Create boxplots for feature distributions
+for column in df.columns:
+    if df[column].dtype != object:
+        sns.boxplot(data=df[column])
+        plt.xlabel(column)
+        plt.show()

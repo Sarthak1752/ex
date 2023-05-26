@@ -1,0 +1,23 @@
+import pandas as pd
+
+data = pd.read_csv("data.csv")
+
+
+missing_values = data.isnull().sum()
+print("Missing values:\n", missing_values)
+
+data_stats = data.describe()
+print("Initial statistics:\n", data_stats)
+
+dimensions = data.shape
+print("Dimensions of the dataframe:", dimensions)
+
+data_types = data.dtypes
+print("Data types of variables:\n", data_types)
+
+data['column_name'] = data['column_name'].astype('desired_type')
+
+
+from sklearn.preprocessing import LabelEncoder
+label_encoder = LabelEncoder()
+data['categorical_column'] = label_encoder.fit_transform(data['categorical_column'])
